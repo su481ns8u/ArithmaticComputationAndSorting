@@ -1,6 +1,7 @@
 #!/bin/bash -x
 
-declare -A ArithOps
+declare -A ArithOpsDict
+declare -a ArithOpsArr
 
 echo "Enter three numbers:"
 read -p "a: " a
@@ -12,10 +13,15 @@ e=$(($a * $b + $c))
 f=$(($c + $a / $b))
 g=$(($a % $b + $c))
 
-ArithOps[o1]=$d
-ArithOps[o2]=$e
-ArithOps[o3]=$f
-ArithOps[o4]=$g
+ArithOpsDict[o1]=$d
+ArithOpsDict[o2]=$e
+ArithOpsDict[o3]=$f
+ArithOpsDict[o4]=$g
 
-echo ${ArithOps[@]}
-echo ${!ArithOps[@]}
+count=0
+for i in ${!ArithOpsDict[@]}
+do
+	ArithOpsArr[count++]=${ArithOpsDict[$i]}
+done
+
+echo ${ArithOpsArr[@]}
